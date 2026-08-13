@@ -1,10 +1,10 @@
 # zcc-verify
 
 [![CI](https://github.com/official-dvl/zksf-zcc-verify/actions/workflows/ci.yml/badge.svg)](https://github.com/official-dvl/zksf-zcc-verify/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/zcc-verify.svg)](https://pypi.org/project/zcc-verify/)
-[![Python](https://img.shields.io/pypi/pyversions/zcc-verify.svg)](https://pypi.org/project/zcc-verify/)
+[![PyPI](https://img.shields.io/pypi/v/zcc-verify.svg?v=2)](https://pypi.org/project/zcc-verify/)
+[![Python](https://img.shields.io/pypi/pyversions/zcc-verify.svg?v=2)](https://pypi.org/project/zcc-verify/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21851381.svg)](https://doi.org/10.5281/zenodo.21851381)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851381-blue.svg)](https://doi.org/10.5281/zenodo.21851381)
 
 Independent consistency checker for **ZCC-v0.1** and **ZHF-v0.1** quantum simulation
 accuracy certificates.
