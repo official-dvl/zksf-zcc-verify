@@ -1,0 +1,52 @@
+[project]
+name = "zcc-verify"
+version = "0.1.0"
+description = "Independent consistency checker for ZCC-v0.1 / ZHF-v0.1 quantum simulation accuracy certificates"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ZKSF", email = "info@zksf.org" }]
+keywords = [
+  "quantum",
+  "quantum computing",
+  "quantum circuit simulator",
+  "certification",
+  "verification",
+  "error bounds",
+  "reproducibility",
+  "ZCC",
+  "ZHF",
+]
+# No dependencies, deliberately. A validator that requires a dependency tree to
+# run is one a sceptical third party will not run.
+dependencies = []
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.scripts]
+zcc-verify = "zcc_verify:main"
+
+[project.urls]
+Homepage = "https://zksf.org"
+Source = "https://github.com/official-dvl/zksf-zcc-verify"
+Issues = "https://github.com/official-dvl/zksf-zcc-verify/issues"
+Specification = "https://doi.org/10.5281/zenodo.21851381"
+Protocol = "https://github.com/official-dvl/zksf/blob/main/docs/CERTIFICATION.md"
+SDK = "https://pypi.org/project/qsim-sdk/"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["zcc_verify*"]
