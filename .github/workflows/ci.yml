@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        # The package itself has no dependencies; pytest is the only test tool.
+        run: |
+          python -m pip install --upgrade pip
+          pip install . pytest
+
+      - name: Run tests
+        run: python -m pytest tests -q
+
+  live:
+    name: Check live certificates
+    runs-on: ubuntu-latest
+    # The checker is only worth anything if it agrees with certificates actually
+    # in circulation, so this validates four real ones covering every accuracy
+    # regime the protocols describe. Network-dependent by design.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: Validate published certificates
+        run: |
+          for id in d904e28af0b441e0 fe529e21d7404ff3 5b8b2c4309d44d41 df1d4c698a954051; do
+            echo "--- $id"
+            zcc-verify "$id"
+          done
+
+  build-dist:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
