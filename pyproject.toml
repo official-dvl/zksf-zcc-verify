@@ -1,7 +1,7 @@
 [project]
-name = "qsim-sdk"
-version = "0.13.4"
-description = "Run quantum circuits on CPU, GPU, or real hardware with a certified error estimate on every result"
+name = "zcc-verify"
+version = "0.2.1"
+description = "Independent consistency checker for ZKSF quantum certificates: ZCC-v0.1, ZHF-v0.1, ZCC-Estimate-v0.1/v0.2 and ZQEC-v0.1"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -10,22 +10,18 @@ keywords = [
   "quantum",
   "quantum computing",
   "quantum circuit simulator",
-  "simulator",
-  "qiskit",
-  "tensor network",
-  "matrix product state",
-  "clifford",
-  "stabilizer",
-  "QPU",
-  "error bars",
   "certification",
-  "quantum machine learning",
-  "variational quantum algorithms",
-  "pytorch",
-  "photonic quantum computing",
-  "neutral atom",
+  "verification",
+  "error bounds",
+  "reproducibility",
+  "ZCC",
+  "ZHF",
+  "ZQEC",
+  "quantum error correction",
 ]
-dependencies = ["httpx>=0.24", "qiskit>=1.0"]
+# No dependencies, deliberately. A validator that requires a dependency tree to
+# run is one a sceptical third party will not run.
+dependencies = []
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Science/Research",
@@ -37,28 +33,22 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Topic :: Scientific/Engineering :: Physics",
-  "Typing :: Typed",
 ]
 
-[project.optional-dependencies]
-# Accept Cirq / PennyLane / pyQuil / Braket circuits, not just Qiskit.
-multiframework = ["qbraid>=0.7"]
-# qsim_sdk.ml: quantum programs as differentiable torch layers. Kept optional
-# because torch is a large install and most users of this client never train
-# anything; the rest of the package must not carry it.
-ml = ["torch>=2.0"]
+[project.scripts]
+zcc-verify = "zcc_verify:main"
 
 [project.urls]
 Homepage = "https://zksf.org"
-Documentation = "https://zksf.org/docs"
-Console = "https://app.zksf.org"
-Source = "https://github.com/official-dvl/zksf"
-Issues = "https://github.com/official-dvl/zksf/issues"
-Changelog = "https://github.com/official-dvl/zksf/blob/main/CHANGELOG.md"
+Source = "https://github.com/official-dvl/zksf-zcc-verify"
+Issues = "https://github.com/official-dvl/zksf-zcc-verify/issues"
+Specification = "https://doi.org/10.5281/zenodo.21851381"
+Protocol = "https://github.com/official-dvl/zksf/blob/main/docs/CERTIFICATION.md"
+SDK = "https://pypi.org/project/qsim-sdk/"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["qsim_sdk*"]
+include = ["zcc_verify*"]
