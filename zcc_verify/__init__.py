@@ -18,7 +18,7 @@ that the number reported is the number that was measured. Verifying a
 certificate is not the same as trusting the issuer.
 
 The specification is published at
-https://doi.org/10.5281/zenodo.21851381, and the protocol reference is
+https://doi.org/10.5281/zenodo.21851380, and the protocol reference is
 https://github.com/official-dvl/zksf/blob/main/docs/CERTIFICATION.md.
 
 Standard library only, on purpose: a validator that a third party has to install
@@ -34,7 +34,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from statistics import NormalDist
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 DEFAULT_BASE_URL = "https://api.zksf.org"
 
