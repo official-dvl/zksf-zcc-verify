@@ -5,9 +5,11 @@
 [![Python](https://img.shields.io/pypi/pyversions/zcc-verify.svg?v=2)](https://pypi.org/project/zcc-verify/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851381-blue.svg)](https://doi.org/10.5281/zenodo.21851381)
+[![Quantum computing mobile app on Google Play](https://img.shields.io/badge/Mobile_app-Google_Play-34A853?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.quantumcomputing.app)
 
-Independent consistency checker for **ZCC-v0.1** and **ZHF-v0.1** quantum simulation
-accuracy certificates.
+Independent consistency checker for ZKSF certificates: **ZCC-v0.1** and **ZHF-v0.1**
+accuracy certificates, **ZCC-Estimate-v0.1/v0.2** estimates and **ZQEC-v0.1**
+error-correction certificates.
 
 No dependencies. Python 3.10+.
 
@@ -42,7 +44,8 @@ dimension, Pauli propagation truncates operator weight, and real hardware substi
 device noise for the ideal distribution.
 
 An approximate result without an error statement is not a measurement, it is an
-assertion. **ZCC-v0.1** and **ZHF-v0.1** are small versioned protocols that attach a
+assertion. **ZCC-v0.1** and **ZHF-v0.1**, and **ZCC-Estimate** and **ZQEC-v0.1** after
+them, are small versioned protocols that attach a
 machine-checkable accuracy statement to a result. This tool is the checker: it takes a
 certificate and confirms the claim it makes follows from the measurement it reports.
 
@@ -62,6 +65,10 @@ certificate itself reports, and requires the two to agree:
 | Pauli propagation | discarded coefficient mass | the mass itself (additive) |
 | Exact / stabilizer | nothing discarded | zero |
 | Hardware (ZHF-v0.1) | Hellinger fidelity vs. the exact ideal | within `[0, 1]`, or explicitly declined |
+| Photonic hardware (ZHF-v0.1) | shots that detected every photon | the coincidence share, `events / shots` to six places |
+| Neural ground state (ZCC-Estimate-v0.2) | energy `E`, its standard error and variance | ceiling `E + 5 * stderr`; floor at or below `E - 5 * stderr - sqrt(variance)` (Weinstein) or `E - 5 * stderr` (Temple), and stated as conditional |
+| Zero-noise extrapolation (ZCC-Estimate) | extrapolated value and its uncertainty | no bound to recompute: marked uncertified, uncertainty at one sigma and not negative |
+| Error correction (ZQEC-v0.1) | failures and shots at each code distance | each rate's Wilson 95% interval; the least-squares suppression factor and prefactor; its joint 95% range |
 
 It also checks that the record is well formed, that the `converged` flag agrees with the
 bound (the two methods use different thresholds), that outcome counts do not exceed the
@@ -75,7 +82,8 @@ whoever issued it.
 **It does not establish that the measurement was honest.** The discarded weight in a
 tensor-network certificate, and the coefficient mass in a Pauli one, are produced by
 whoever ran the simulation. No arithmetic on the record can confirm that the number
-reported is the number that was measured.
+reported is the number that was measured. The same holds for the failure counts in an
+error-correction certificate and the energy in a neural one.
 
 Verifying a certificate is not the same as trusting the issuer. What it gives you is
 narrower and still worth having: the claim is well formed, self-consistent, and stated
@@ -99,14 +107,19 @@ source, including a local file or a different issuer, can be checked:
 zcc-verify ./certificate.json
 ```
 
-Four live certificates to try, covering every accuracy regime the protocols describe:
+Live certificates to try, one for every kind of statement the four protocols make:
 
-| Certificate | Run |
-|---|---|
-| `d904e28af0b441e0` | 3-qubit GHZ, exact stabilizer simulation |
-| `fe529e21d7404ff3` | 12-qubit GHZ, tensor network, measured bound of 2.11e-08 |
-| `5b8b2c4309d44d41` | 192-qubit GHZ, Pauli propagation |
-| `df1d4c698a954051` | Bell state on IonQ Forte-1 hardware, 0.977 fidelity |
+| Certificate | Protocol | Run |
+|---|---|---|
+| `d904e28af0b441e0` | ZCC-v0.1 | 3-qubit GHZ, exact stabilizer simulation |
+| `fe529e21d7404ff3` | ZCC-v0.1 | 12-qubit GHZ, tensor network, measured bound of 2.11e-08 |
+| `5b8b2c4309d44d41` | ZCC-v0.1 | 192-qubit GHZ, Pauli propagation |
+| `df1d4c698a954051` | ZHF-v0.1 | Bell state on IonQ Forte-1 hardware, 0.977 fidelity |
+| `063a6fcb82a9464a` | ZHF-v0.1 | Two photons on photonic hardware, 0.967 fidelity conditioned on detecting both |
+| `b358005dc6724273` | ZQEC-v0.1 | Surface code at distance 5, 4 failures in 20,000 shots |
+| `881ba3500ed94538` | ZQEC-v0.1 | Surface code at distances 3, 5 and 7, suppression factor 7.26 fitted, 95% range 3.46 to 15.2 |
+| `66e9fabc9e784425` | ZCC-Estimate-v0.2 | 8-spin Ising ring, neural ground state, ceiling -10.2499758 |
+| `9dcf796bd99648a0` | ZCC-Estimate-v0.2 | Zero-noise extrapolation, mitigated value with a one-sigma uncertainty |
 
 ## On the limits of the bound
 

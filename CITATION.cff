@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "zcc-verify: independent checker for ZCC-v0.1 / ZHF-v0.1 accuracy certificates"
+title: "zcc-verify: independent checker for ZKSF certificates (ZCC, ZHF, ZCC-Estimate, ZQEC)"
 doi: 10.5281/zenodo.21851381
 message: "If you use this tool or the certification protocols it checks in published work, please cite the protocol paper as below."
 type: software
@@ -11,12 +11,18 @@ authors:
 repository-code: "https://github.com/official-dvl/zksf-zcc-verify"
 url: "https://zksf.org"
 abstract: >-
-  Dependency-free checker for ZCC-v0.1 and ZHF-v0.1 quantum simulation accuracy
+  Dependency-free checker for ZKSF certificates: ZCC-v0.1 and ZHF-v0.1 accuracy
+  certificates, ZCC-Estimate-v0.1/v0.2 estimates and ZQEC-v0.1 error-correction
   certificates. Recomputes a certificate's declared error bound from the measured
   quantity the certificate reports, and requires the two to agree: sqrt(2*eps) for
   matrix product state truncation, the discarded coefficient mass for Pauli
   propagation, zero for exact and stabilizer methods, and a Hellinger fidelity
-  within the unit interval for runs on quantum hardware. Also checks record
+  within the unit interval for runs on quantum hardware, with the coincidence share
+  recomputed for photonic runs. For a neural ground state it recomputes the energy
+  ceiling and checks the floor against Weinstein's or Temple's inequality; for
+  zero-noise extrapolation it checks that the estimate is marked uncertified at one
+  sigma; for error correction it recomputes every logical error rate's Wilson 95%
+  interval, the least-squares suppression factor and its joint 95% range. Also checks record
   structure and confirms no account data or circuit source is present. It
   establishes that a certificate is well formed and self-consistent; it does not
   establish that the underlying measurement was honestly made.
@@ -28,4 +34,4 @@ keywords:
   - verification
   - reproducibility
 license: MIT
-version: 0.1.0
+version: 0.2.0

@@ -1,7 +1,7 @@
 [project]
 name = "zcc-verify"
-version = "0.1.0"
-description = "Independent consistency checker for ZCC-v0.1 / ZHF-v0.1 quantum simulation accuracy certificates"
+version = "0.2.0"
+description = "Independent consistency checker for ZKSF quantum certificates: ZCC-v0.1, ZHF-v0.1, ZCC-Estimate-v0.1/v0.2 and ZQEC-v0.1"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -16,6 +16,8 @@ keywords = [
   "reproducibility",
   "ZCC",
   "ZHF",
+  "ZQEC",
+  "quantum error correction",
 ]
 # No dependencies, deliberately. A validator that requires a dependency tree to
 # run is one a sceptical third party will not run.
