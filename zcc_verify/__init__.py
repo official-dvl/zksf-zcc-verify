@@ -34,7 +34,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from statistics import NormalDist
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 DEFAULT_BASE_URL = "https://api.zksf.org"
 
