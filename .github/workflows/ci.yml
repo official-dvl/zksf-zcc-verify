@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     # The checker is only worth anything if it agrees with certificates actually
     # in circulation, so this validates four real ones covering every accuracy
-    # regime the protocols describe. Network-dependent by design.
+    # regime of ZCC-v0.1 and ZHF-v0.1. Network-dependent by design.
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
