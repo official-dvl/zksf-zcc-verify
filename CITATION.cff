@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "Reporting the Accuracy of Approximate Quantum Circuit Simulation v0.2.1"
-doi: 10.5281/zenodo.21851381
+title: "Reporting the Accuracy of Approximate Quantum Circuit Simulation v0.2.2"
+doi: 10.5281/zenodo.21851380
 message: "If you use this tool or the certification protocols it checks in published work, please cite the protocol paper as below."
 type: software
 authors:
@@ -34,4 +34,4 @@ keywords:
   - verification
   - reproducibility
 license: MIT
-version: 0.2.1
+version: 0.2.2

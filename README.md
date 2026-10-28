@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/zcc-verify.svg?v=2)](https://pypi.org/project/zcc-verify/)
 [![Python](https://img.shields.io/pypi/pyversions/zcc-verify.svg?v=2)](https://pypi.org/project/zcc-verify/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851381-blue.svg)](https://doi.org/10.5281/zenodo.21851381)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21851380-blue.svg)](https://doi.org/10.5281/zenodo.21851380)
 [![Quantum computing mobile app on Google Play](https://img.shields.io/badge/Mobile_app-Google_Play-34A853?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.quantumcomputing.app)
 
 Independent consistency checker for ZKSF certificates: **ZCC-v0.1** and **ZHF-v0.1**
@@ -52,7 +52,7 @@ certificate and confirms the claim it makes follows from the measurement it repo
 The protocols are specified in a citable paper:
 
 > Reporting the Accuracy of Approximate Quantum Circuit Simulation: A Machine-Checkable
-> Certificate Format. [doi.org/10.5281/zenodo.21851381](https://doi.org/10.5281/zenodo.21851381)
+> Certificate Format. [doi.org/10.5281/zenodo.21851380](https://doi.org/10.5281/zenodo.21851380)
 
 ## What this establishes
 

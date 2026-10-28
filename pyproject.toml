@@ -1,6 +1,6 @@
 [project]
 name = "zcc-verify"
-version = "0.2.1"
+version = "0.2.2"
 description = "Independent consistency checker for ZKSF quantum certificates: ZCC-v0.1, ZHF-v0.1, ZCC-Estimate-v0.1/v0.2 and ZQEC-v0.1"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -42,7 +42,7 @@ zcc-verify = "zcc_verify:main"
 Homepage = "https://zksf.org"
 Source = "https://github.com/official-dvl/zksf-zcc-verify"
 Issues = "https://github.com/official-dvl/zksf-zcc-verify/issues"
-Specification = "https://doi.org/10.5281/zenodo.21851381"
+Specification = "https://doi.org/10.5281/zenodo.21851380"
 Protocol = "https://github.com/official-dvl/zksf/blob/main/docs/CERTIFICATION.md"
 SDK = "https://pypi.org/project/qsim-sdk/"
 
